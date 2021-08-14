@@ -86,26 +86,27 @@ spline_y_A = spline(x(1:7), y_g_A, xx);
 spline_y_B = spline(x(2:8), y_g_B, xx);
 
 
-plot(xx, spline_y_A)
-hold on
-plot(xx, spline_y_B)
-plot(x(1:7),y_g_A, 'ko')
-plot(x(2:8),y_g_B, 'ko')
-plot([0 1], [0 0], 'k-')
-legend('log (\gamma_A)', 'log (\gamma_B)')
-ylabel('log (\gamma_A) and log (\gamma_B)')
-xlabel("Mole fraction of acetone (X_A)")
-hold off
+% plot(xx, spline_y_A)
+% hold on
+% plot(xx, spline_y_B)
+% plot(x(1:7),y_g_A, 'ko')
+% plot(x(2:8),y_g_B, 'ko')
+% plot([0 1], [0 0], 'k-')
+% legend('log (\gamma_A)', 'log (\gamma_B)')
+% ylabel('log (\gamma_A) and log (\gamma_B)')
+% xlabel("Mole fraction of acetone (X_A)")
+% hold off
 
-Y_ln = spline_y_B - spline_y_A;
+Y_ln = spline_y_A - spline_y_B;
 
 % uncomment this code for graph 2
-% hold on
-% plot(xx(2:100),Y_ln(2:100))
-% xlabel("Mole fraction of acetone (X_A)")
-% ylabel("log (\gamma_2/\gamma_1)")
-% plot([0 1], [0 0], 'k-')
-% hold off
+hold on
+plot(xx(2:100),Y_ln(2:100))
+xlabel("Mole fraction of acetone (X_A)")
+ylabel("log (\gamma_1/\gamma_2)")
+plot([0 1], [0 0], 'k-')
+legend(["spline fit for log (\gamma_1/\gamma_2)"; ""])
+hold off
 
 area = trapz(xx(2:100),Y_ln(2:100))
 
